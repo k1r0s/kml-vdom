@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  </body>
+  <script src="bundle.js" charset="utf-8"></script>
+  <script >
+  // having a class with an initial html property we should be able to render the dom properly with it
+  var test = {};
+
+  // we have several properties for that instance
+  test.html = "<div><span></span><input/></div>";
+  test.parent = document.body;
+  test.node = null;
+
+  // we render the instance in the dom
+  var props = lib.create(test.html, test.parent);
+
+  // update instance properties
+  test.hscript = props.hscript;
+  test.node = props.node;
+
+  // we make a change in the instance's html
+  test.html = "<div><span></span><input value=\"123\"/><button>name</button></div>";
+
+  setTimeout(function(){
+    // we perform another update 'it should be updated only the button'
+    var mierda = lib.update(test.html, test.hscript, test.node);
+
+    // update instance properties
+    test.hscript = mierda.hscript;
+    test.node = mierda.node;
+
+
+  }, 4000);
+  </script>
+</html>
